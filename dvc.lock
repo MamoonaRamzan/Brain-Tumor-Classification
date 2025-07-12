@@ -14,9 +14,9 @@ stages:
     outs:
     - path: artifacts/data_ingestion/Brain tumor Dataset
       hash: md5
-      md5: 8d77130541d5cd05acd22e04939d2ae2.dir
-      size: 8672762
-      nfiles: 253
+      md5: c0f20a4e166e0dcbecb1c9878694a418.dir
+      size: 46462950
+      nfiles: 2000
   prepare_base_model:
     cmd: python src/cnnClassifier/pipeline/stage_02_prepare_base_model.py
     deps:
@@ -30,7 +30,7 @@ stages:
       size: 1014
     params:
       params.yaml:
-        CLASSES: 2
+        CLASSES: 4
         IMAGE_SIZE:
         - 224
         - 224
@@ -41,17 +41,17 @@ stages:
     outs:
     - path: artifacts/prepare_base_model
       hash: md5
-      md5: fd05b33b0a6c8a5bcd3ac4ccb3bcab95.dir
-      size: 118073528
+      md5: 5d774a8f7c5e03208c7efa7295c29d2d.dir
+      size: 118274232
       nfiles: 2
   training:
     cmd: python src/cnnClassifier/pipeline/stage_03_training.py
     deps:
     - path: artifacts/data_ingestion/Brain tumor Dataset
       hash: md5
-      md5: 8d77130541d5cd05acd22e04939d2ae2.dir
-      size: 8672762
-      nfiles: 253
+      md5: c0f20a4e166e0dcbecb1c9878694a418.dir
+      size: 46462950
+      nfiles: 2000
     - path: config/config.yaml
       hash: md5
       md5: f3467512bbcb50a66f5c15e63f1dd144
@@ -77,20 +77,20 @@ stages:
     outs:
     - path: artifacts/training/model.h5
       hash: md5
-      md5: e2b2262cd403341e224e053303b596dd
-      size: 59551256
+      md5: 6ceb8b38fad02613f4178ce49d2157f3
+      size: 60153368
   evaluation:
     cmd: python src/cnnClassifier/pipeline/stage_04_evaluation.py
     deps:
     - path: artifacts/data_ingestion/Brain tumor Dataset
       hash: md5
-      md5: 8d77130541d5cd05acd22e04939d2ae2.dir
-      size: 8672762
-      nfiles: 253
+      md5: c0f20a4e166e0dcbecb1c9878694a418.dir
+      size: 46462950
+      nfiles: 2000
     - path: artifacts/training/model.h5
       hash: md5
-      md5: e2b2262cd403341e224e053303b596dd
-      size: 59551256
+      md5: 6ceb8b38fad02613f4178ce49d2157f3
+      size: 60153368
     - path: config/config.yaml
       hash: md5
       md5: f3467512bbcb50a66f5c15e63f1dd144
@@ -109,5 +109,5 @@ stages:
     outs:
     - path: scores.json
       hash: md5
-      md5: 5aeb5ff6fa4e89171963da5d7610cc91
+      md5: 1c146ab05b081357b47f6c415f48acc5
       size: 73
