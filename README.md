@@ -35,7 +35,7 @@ This repository contains a deep learning-powered web application for classifying
 ### ✅ Create Conda Environment
 
 ```bash
-conda create -n tumor-classifier python=3.8 -y
+conda create -n tumor-classifier python=3.10 -y
 conda activate tumor-classifier
 ```
 ### 📦 Install Requirements
